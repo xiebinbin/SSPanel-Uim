@@ -37,6 +37,27 @@
                             </div>
                             <div class="form-group form-group-label">
                                 <div class="checkbox switch">
+                                    <label for="is_agent">
+                                        <input {if $edit_user->is_agent==1}checked{/if} class="access-hide" id="is_agent" type="checkbox"/>
+                                        <span class="switch-toggle"></span>是否为代理
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label for="agent_level">
+                                    <label class="floating-label" for="sort">代理等级</label>
+                                    <select id="agent_level" class="form-control maxwidth-edit" name="agent_level">
+                                        <option value="0" {if $edit_user->agent_level==0}selected{/if}>无
+                                        </option>
+                                        <option value="1" {if $edit_user->agent_level==1}selected{/if}>一级代理
+                                        </option>
+                                        <option value="2" {if $edit_user->agent_level==2}selected{/if}>二级代理
+                                        </option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <div class="checkbox switch">
                                     <label for="enable">
                                         <input {if $edit_user->enable==1}checked{/if} class="access-hide" id="enable"
                                                type="checkbox"><span class="switch-toggle"></span>用户启用
@@ -283,21 +304,23 @@
     //document.getElementById("class_expire").value="{$edit_user->class_expire}";
     window.addEventListener('load', () => {
         function submit() {
+            let is_admin = 0;
             if (document.getElementById('is_admin').checked) {
-                var is_admin = 1;
-            } else {
-                var is_admin = 0;
+                is_admin = 1;
             }
+            let is_agent = 0;
+            if (document.getElementById('is_agent').checked) {
+                is_agent = 1;
+            }
+            let enable = 0;
             if (document.getElementById('enable').checked) {
-                var enable = 1;
-            } else {
-                var enable = 0;
+                enable = 1;
             }
+            let ga_enable = 0;
             if (document.getElementById('ga_enable').checked) {
-                var ga_enable = 1;
-            } else {
-                var ga_enable = 0;
+                ga_enable = 1;
             }
+
             $.ajax({
                 type: "PUT",
                 url: "/admin/user/{$edit_user->id}",
@@ -319,6 +342,8 @@
                     money: $$getValue('money'),
                     enable,
                     is_admin,
+                    is_agent,
+                    agent_level: $$getValue('agent_level'),
                     ga_enable,
                     ban_time: $$getValue('ban_time'),
                     ref_by: $$getValue('ref_by'),

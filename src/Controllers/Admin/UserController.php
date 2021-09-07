@@ -245,6 +245,8 @@ class UserController extends AdminController
         $user->node_connector   = $request->getParam('node_connector');
         $user->enable           = $request->getParam('enable');
         $user->is_admin         = $request->getParam('is_admin');
+        $user->is_agent         = $request->getParam('is_agent');
+        $user->agent_level         = $request->getParam('agent_level');
         $user->ga_enable        = $request->getParam('ga_enable');
         $user->node_group       = $request->getParam('group');
         $user->ref_by           = $request->getParam('ref_by');

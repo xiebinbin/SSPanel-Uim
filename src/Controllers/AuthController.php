@@ -319,9 +319,9 @@ class AuthController extends BaseController
                 return $res;
             }
 
-            if ($gift_user->class == 0) {
+            if ($gift_user->is_agent == 0) {
                 $res['ret'] = 0;
-                $res['msg'] = '邀请人不是VIP';
+                $res['msg'] = '邀请人不是代理';
                 return $res;
             }
 

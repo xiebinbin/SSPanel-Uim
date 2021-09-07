@@ -88,9 +88,11 @@
                                 <a href="/user/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;工单系统</a>
                             </li>
                         {/if}
+                        {if $user->is_agent == 1}
                         <li>
-                            <a href="/user/invite"><i class="icon icon-lg">loyalty</i>&nbsp;邀请链接</a>
+                            <a href="/user/invite"><i class="icon icon-lg">loyalty</i>代理面板</a>
                         </li>
+                        {/if}
                     </ul>
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">使用</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_use">

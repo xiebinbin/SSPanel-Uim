@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `node_speedlimit` decimal(12,2) NOT NULL DEFAULT 0.00,
   `node_connector` int(11) NOT NULL DEFAULT 0,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否管理员',
+  `is_agent` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否代理',
+  `agent_level` tinyint(1) NOT NULL DEFAULT 0 COMMENT '代理代理 1 2',
   `im_type` int(11) DEFAULT 1 COMMENT '联系方式类型',
   `im_value` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系方式',
   `last_day_t` bigint(20) NOT NULL DEFAULT 0 COMMENT '今天之前已使用的流量',

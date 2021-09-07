@@ -12,7 +12,7 @@ return function (SlimApp $app) {
     $app->get('/405',       App\Controllers\HomeController::class . ':page405');
     $app->get('/500',       App\Controllers\HomeController::class . ':page500');
     $app->get('/tos',       App\Controllers\HomeController::class . ':tos');
-    $app->get('/staff',     App\Controllers\HomeController::class . ':staff');
+    //$app->get('/staff',     App\Controllers\HomeController::class . ':staff');
 
     // other
     $app->post('/notify',               App\Controllers\HomeController::class . ':notify');
@@ -109,7 +109,10 @@ return function (SlimApp $app) {
         $this->post('/doiam',                   App\Services\Payment::class . ':purchase');
 
     })->add(new Auth());
-
+    $app->group('/agent',function (){
+        $this->post('/set_agent',                   App\Controllers\AgentController::class . ':setAgent');
+        $this->post('/cancel_agent',                   App\Controllers\AgentController::class . ':cancelAgent');
+    })->add(new Auth());
     $app->group('/payment', function () {
         $this->get('/notify',           App\Services\Payment::class . ':notify');
         $this->post('/notify',          App\Services\Payment::class . ':notify');

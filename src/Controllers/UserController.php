@@ -529,16 +529,19 @@ class UserController extends BaseController
         }
 
         $pageNum = $request->getQueryParams()['page'] ?? 1;
-        $paybacks = Payback::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-        if (!$paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get')) {
-            $paybacks_sum = 0;
-        }
-        $paybacks->setPath('/user/invite');
-        $render = Tools::paginate_render($paybacks);
+        //$paybacks = Payback::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+        $juniors = User::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+        $paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get') ?? 0;
+        //$paybacks->setPath('/user/invite');
+        $juniors->setPath('/user/invite');
+        //$render = Tools::paginate_render($paybacks);
+        $render = Tools::paginate_render($juniors);
         return $this->view()
+            ->assign('user', $this->user)
             ->assign('code', $code)
-            ->assign('paybacks', $paybacks)
+//            ->assign('paybacks', $paybacks)
             ->assign('paybacks_sum', $paybacks_sum)
+            ->assign('juniors', $juniors)
             ->assign('render', $render)
             ->display('user/invite.tpl');
     }

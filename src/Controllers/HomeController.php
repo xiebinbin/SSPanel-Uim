@@ -23,9 +23,12 @@ class HomeController extends BaseController
      * @param Response  $response
      * @param array     $args
      */
-    public function index($request, $response, $args): ResponseInterface
+    public function index($request,Response $response, $args): ResponseInterface
     {
-        return $response->write($this->view()->fetch('index.tpl'));
+        if(empty($this->user->id)){
+            return $response->write($this->view()->fetch('index_astro_boy.tpl'));
+        }
+        return $response->withRedirect('/user');
     }
 
     /**

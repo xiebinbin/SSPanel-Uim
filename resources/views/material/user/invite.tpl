@@ -3,13 +3,13 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">邀请</h1>
+            <h1 class="content-heading">代理面板</h1>
         </div>
     </div>
     <div class="container">
         <section class="content-inner margin-top-no">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6" style="display: none;">
                     <div class="card margin-bottom-no">
                         <div class="card-main">
                             <div class="card-inner">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                {if $user->class!=0}
+                {if $user->is_agent!=0}
                     {if $user->invite_num!=-1}
                         <div class="col-lg-6 col-md-6">
                             <div class="card margin-bottom-no">
@@ -130,23 +130,29 @@
                                         {$render}
                                         <table class="table">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>被邀请用户ID</th>
-                                                <th>获得返利</th>
-                                                <th>返利時間</th>
+                                                <th>用户ID</th>
+                                                {if $user->is_agent == 1 && $user->agent_level == 1}
+                                                <th>角色</th>
+                                                {/if}
+                                                <th>邀请时间</th>
+                                                <th>操作</th>
                                             </tr>
-                                            {foreach $paybacks as $payback}
+                                            {foreach $juniors as $junior}
                                                 <tr>
-                                                    <td>{$payback->id}</td>
-                                                    {if $payback->user()!=null}
-                                                        <td>{$payback->user()->user_name}
-                                                        </td>
-                                                    {else}
-                                                        <td>已注销
-                                                        </td>
+                                                    <td>{$junior->id}</td>
+                                                    {if $user->is_agent == 1 && $user->agent_level == 1}
+                                                        <td>{if $junior->is_agent==1}代理{else}普通用户{/if}</td>
                                                     {/if}
-                                                    <td>{$payback->ref_get} 元</td>
-                                                    <td class='payback-datetime'>{$payback->datetime}</td>
+                                                    <td>{$junior->reg_date}</td>
+                                                    <td>
+                                                        {if $user->is_agent == 1 && $user->agent_level == 1}
+                                                            {if $junior->is_agent == 1}
+                                                                <button onclick="cancelAgent({$junior->id})">取消代理</button>
+                                                            {else}
+                                                                <button onclick="setAgent({$junior->id})">设为代理</button>
+                                                            {/if}
+                                                        {/if}
+                                                    </td>
                                                 </tr>
                                             {/foreach}
                                         </table>
@@ -205,6 +211,58 @@
     });
 </script>
 <script>
+    function cancelAgent(userId){
+        $.ajax({
+            type: "POST",
+            url: "/agent/cancel_agent",
+            dataType: "json",
+            data: {
+                user_id: userId
+            },
+            success: (data) => {
+                if (data.ret) {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                    window.setTimeout("location.href='/user/invite'", {$config['jump_delay']});
+                } else {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                }
+            },
+            error: (jqXHR) => {
+                $("#result").modal();
+                $$.getElementById('msg').innerHTML = `${
+                        data.msg
+                } 出现了一些错误`;
+            }
+        });
+    }
+    function setAgent(userId){
+        $.ajax({
+            type: "POST",
+            url: "/agent/set_agent",
+            dataType: "json",
+            data: {
+                user_id: userId
+            },
+            success: (data) => {
+                if (data.ret) {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                    window.setTimeout("location.href='/user/invite'", {$config['jump_delay']});
+                } else {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                }
+            },
+            error: (jqXHR) => {
+                $("#result").modal();
+                $$.getElementById('msg').innerHTML = `${
+                        data.msg
+                } 出现了一些错误`;
+            }
+        });
+    }
     $("#buy-invite").click(function () {
         $.ajax({
             type: "POST",
@@ -229,7 +287,7 @@
                         data.msg
                         } 出现了一些错误`;
             }
-        })
+        });
     });
     $("#custom-invite-confirm").click(function () {
         $.ajax({

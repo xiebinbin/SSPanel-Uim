@@ -31,7 +31,7 @@
             <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
                 {if $user->isLogin}
                 <span class="access-hide">{$user->user_name}</span>
-                <span class="avatar avatar-sm"><img src="{$user->gravatar}"></span>
+                <span class="avatar avatar-sm"><img src="#"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
@@ -40,9 +40,6 @@
                 <li>
                     <a class="padding-right-cd waves-attach" href="/user/logout"><span
                                 class="icon icon-lg margin-right">exit_to_app</span>登出</a>
-                </li>
-                <li>
-                    <a href="//en.gravatar.com/" target="view_window"><i class="icon icon-lg margin-right">insert_photo</i>设置头像</a>
                 </li>
             </ul>
             {else}
@@ -88,12 +85,21 @@
                                 <a href="/user/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;工单系统</a>
                             </li>
                         {/if}
-                        {if $user->is_agent == 1}
-                        <li>
-                            <a href="/user/invite"><i class="icon icon-lg">loyalty</i>代理面板</a>
-                        </li>
-                        {/if}
                     </ul>
+                    {if $user->is_agent == 1}
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_agent">代理</a>
+                    <ul class="menu-collapse collapse in" id="ui_menu_agent">
+                        <li>
+                            <a href="/user/invite"><i class="icon icon-lg">assessment</i>基础信息</a>
+                        </li>
+                        <li>
+                            <a href="/user/agent/junior"><i class="icon icon-lg">accessibility</i>下级用户</a>
+                        </li>
+                        <li>
+                            <a href="/user/agent/bill"><i class="icon icon-lg">payment</i>结算记录</a>
+                        </li>
+                    </ul>
+                    {/if}
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">使用</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_use">
                         <li>

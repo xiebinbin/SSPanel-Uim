@@ -8,7 +8,8 @@ use App\Services\{
     Config,
     Payment
 };
-use App\Models\{
+use App\Models\{AgentBill,
+    AgentWallet,
     Ip,
     Ann,
     Code,
@@ -26,8 +27,7 @@ use App\Models\{
     DetectRule,
     InviteCode,
     EmailVerify,
-    UserSubscribeLog
-};
+    UserSubscribeLog};
 use App\Utils\{
     GA,
     URL,
@@ -527,10 +527,10 @@ class UserController extends BaseController
             $this->user->addInviteCode();
             $code = InviteCode::where('user_id', $this->user->id)->first();
         }
-
+        $agentWallet = AgentWallet::where('user_id', $this->user->id)->first();
         $pageNum = $request->getQueryParams()['page'] ?? 1;
         //$paybacks = Payback::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-        $juniors = User::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+        $juniors = User::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(1, ['*'], 'junior_page', $pageNum);
         $paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get') ?? 0;
         //$paybacks->setPath('/user/invite');
         $juniors->setPath('/user/invite');
@@ -540,10 +540,47 @@ class UserController extends BaseController
             ->assign('user', $this->user)
             ->assign('code', $code)
 //            ->assign('paybacks', $paybacks)
-            ->assign('paybacks_sum', $paybacks_sum)
+            ->assign('agent_wallet', $agentWallet)
             ->assign('juniors', $juniors)
             ->assign('render', $render)
             ->display('user/invite.tpl');
+    }
+    /**
+     * @param Request   $request
+     * @param Response  $response
+     * @param array     $args
+     */
+    public function junior($request, $response, $args)
+    {
+        $pageNum = $request->getQueryParams()['page'] ?? 1;
+        $juniors = User::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+
+        $juniors->setPath('/user/agent/junior');
+        $render = Tools::paginate_render($juniors);
+        return $this->view()
+            ->assign('user', $this->user)
+            ->assign('juniors', $juniors)
+            ->assign('render', $render)
+            ->display('user/agent/junior.tpl');
+    }
+
+    /**
+     * @param Request   $request
+     * @param Response  $response
+     * @param array     $args
+     */
+    public function bill($request, $response, $args)
+    {
+        $pageNum = $request->getQueryParams()['page'] ?? 1;
+        $bills = AgentBill::where('agent_user_id', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+
+        $bills->setPath('/user/agent/bill');
+        $render = Tools::paginate_render($bills);
+        return $this->view()
+            ->assign('user', $this->user)
+            ->assign('bills', $bills)
+            ->assign('render', $render)
+            ->display('user/agent/bill.tpl');
     }
 
     /**

@@ -342,7 +342,7 @@ class DefaultConfig
             'Register.string.defaultTraffic' => [
                 'key'           => $key,
                 'type'          => 'string',
-                'value'         => '1',
+                'value'         => '0',
                 'name'          => '用户初始流量',
                 'comment'       => '用户初始流量，单位：GB',
                 'operator_id'   => 0,
@@ -442,7 +442,7 @@ class DefaultConfig
             'Register.string.defaultInviteNum' => [
                 'key'           => $key,
                 'type'          => 'string',
-                'value'         => '10',
+                'value'         => '-1',
                 'name'          => '邀请链接可用次数',
                 'comment'       => '注册后的邀请链接可用次数',
                 'operator_id'   => 0,
@@ -451,7 +451,7 @@ class DefaultConfig
             'Register.string.defaultInvite_get_money' => [
                 'key'           => $key,
                 'type'          => 'string',
-                'value'         => '1',
+                'value'         => '0',
                 'name'          => '通过邀请链接注册获得奖励',
                 'comment'       => '新用户通过私人邀请链接注册时，获得奖励金额（作为初始资金）',
                 'operator_id'   => 0,

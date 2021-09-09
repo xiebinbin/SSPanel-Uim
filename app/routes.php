@@ -33,6 +33,8 @@ return function (SlimApp $app) {
         $this->get('/donate',                   App\Controllers\UserController::class . ':donate');
         $this->get('/profile',                  App\Controllers\UserController::class . ':profile');
         $this->get('/invite',                   App\Controllers\UserController::class . ':invite');
+        $this->get('/agent/junior',             App\Controllers\UserController::class . ':junior');
+        $this->get('/agent/bill',             App\Controllers\UserController::class . ':bill');
         $this->get('/disable',                  App\Controllers\UserController::class . ':disable');
 
         $this->get('/node',                     App\Controllers\User\NodeController::class . ':user_node_page');

@@ -28,3 +28,4 @@ CREATE TABLE IF NOT EXISTS `agent_bills` (
     key agent_user_id(`agent_user_id`),
     key flow(`flow`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='代理账单表';
+ALTER TABLE `user` ADD COLUMN `is_finance` tinyint(1) NULL AFTER `is_agent`;

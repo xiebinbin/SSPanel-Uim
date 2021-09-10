@@ -84,6 +84,7 @@
             <a class="menu-logo" href="/"><i class="icon icon-lg">person_pin</i>&nbsp;管理面板</a>
             <ul class="nav">
                 <li>
+                    {if $user->is_admin == 1}
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">我的</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_me">
                         <li><a href="/admin"><i class="icon icon-lg">business_center</i>&nbsp;系统概览</a></li>
@@ -128,6 +129,15 @@
                             <li><a href="/admin/editConfig"><i class="icon icon-lg">shopping_cart</i>&nbsp;支付设置</a></li>
                         {/if}
                     </ul>
+                    {/if}
+                    {if $user->is_finance == 1 || $user->is_admin == 1}
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_trade">财务</a>
+                    <ul class="menu-collapse collapse in" id="ui_menu_trade">
+                        <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>基础信息</a></li>
+                        <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>代理列表</a></li>
+                        <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>打款</a></li>
+                    </ul>
+                    {/if}
                 <li><a href="/user"><i class="icon icon-lg">person</i>&nbsp;用户中心</a></li>
             </ul>
         </div>

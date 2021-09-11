@@ -73,7 +73,7 @@
                             stack: false
                         });
                     }
-                    window.location.reload();
+                    setTimeout(() => location.reload(), 2000);
                 },
                 error: jqXHR => {
                     transferLoad = false;

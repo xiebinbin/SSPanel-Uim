@@ -35,6 +35,7 @@ return function (SlimApp $app) {
         $this->get('/invite',                   App\Controllers\UserController::class . ':invite');
         $this->get('/agent/junior',             App\Controllers\UserController::class . ':junior');
         $this->get('/agent/bill',             App\Controllers\UserController::class . ':bill');
+        $this->get('/agent/fans',             App\Controllers\AgentController::class . ':fans');
         $this->get('/disable',                  App\Controllers\UserController::class . ':disable');
 
         $this->get('/node',                     App\Controllers\User\NodeController::class . ':user_node_page');
@@ -279,6 +280,23 @@ return function (SlimApp $app) {
 
             $this->get('/register',             App\Controllers\Admin\GConfigController::class . ':register');
             $this->post('/register/ajax',       App\Controllers\Admin\GConfigController::class . ':register_ajax');
+        });
+        $this->group('/agent',function () {
+            $this->get('/index',         App\Controllers\Admin\AgentController::class . ':index');
+            $this->get('/info',         App\Controllers\Admin\AgentController::class . ':info');
+        });
+        $this->group('/finance',function () {
+            $this->get('/base',         App\Controllers\Admin\FinanceController::class . ':baseInfo');
+            // 计算记录
+            $this->get('/settle/index',         App\Controllers\Admin\FinanceController::class . ':settleIndex');
+            // 计算页面
+            $this->get('/transfer',         App\Controllers\Admin\FinanceController::class . ':transfer');
+            // 结算信息
+            $this->get('/settle/info',         App\Controllers\Admin\FinanceController::class . ':settleInfo');
+            // 创建结算
+            $this->post('/settle/create',         App\Controllers\Admin\FinanceController::class . ':createSettle');
+            // 撤销结算
+            $this->post('/settle/cancel',         App\Controllers\Admin\FinanceController::class . ':cancelSettle');
         });
     })->add(new Admin());
 

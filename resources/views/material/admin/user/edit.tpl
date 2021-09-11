@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group form-group-label">
                                 <div class="checkbox switch">
-                                    <label for="is_agent">
+                                    <label for="is_finance">
                                         <input {if $edit_user->is_finance==1}checked{/if} class="access-hide" id="is_finance" type="checkbox"/>
                                         <span class="switch-toggle"></span>是否为财务
                                     </label>

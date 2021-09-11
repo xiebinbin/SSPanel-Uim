@@ -64,7 +64,7 @@
             <a class="menu-logo" href="/"><i class="icon icon-lg">language</i>&nbsp;{$config['appName']}</a>
             <ul class="nav">
                 <li>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">我的</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">个人中心</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_me">
                         <li>
                             <a href="/user"><i class="icon icon-lg">account_balance_wallet</i>&nbsp;用户中心</a>
@@ -80,20 +80,20 @@
                             <a href="/user/subscribe_log"><i class="icon icon-lg">important_devices</i>&nbsp;订阅记录</a>
                         </li>
                         {/if}
-                        {if $config['enable_ticket']===true}
-                            <li>
-                                <a href="/user/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;工单系统</a>
-                            </li>
-                        {/if}
                     </ul>
                     {if $user->is_agent == 1}
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_agent">代理</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_agent">代理中心</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_agent">
                         <li>
                             <a href="/user/invite"><i class="icon icon-lg">assessment</i>基础信息</a>
                         </li>
+                        {if $user->agent_level == 1}
                         <li>
-                            <a href="/user/agent/junior"><i class="icon icon-lg">accessibility</i>下级用户</a>
+                            <a href="/user/agent/junior"><i class="icon icon-lg">accessibility</i>下级代理</a>
+                        </li>
+                        {/if}
+                        <li>
+                            <a href="/user/agent/fans"><i class="icon icon-lg">accessibility</i>下级用户</a>
                         </li>
                         <li>
                             <a href="/user/agent/bill"><i class="icon icon-lg">payment</i>结算记录</a>
@@ -109,8 +109,8 @@
                             <a href="/user/announcement"><i class="icon icon-lg">announcement</i>&nbsp;网站公告</a>
                         </li>
                     </ul>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">审计</a>
-                    <ul class="menu-collapse collapse in" id="ui_menu_detect">
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect" style="display: none;">审计</a>
+                    <ul class="menu-collapse collapse in" id="ui_menu_detect" style="display: none;">
                         <li>
                             <a href="/user/detect"><i class="icon icon-lg">account_balance</i>&nbsp;审计规则</a>
                         </li>
@@ -135,7 +135,10 @@
                             </li>
                         {/if}
                     </ul>
-                    {if $user->is_admin}
+                    {if $config['enable_ticket']===true}
+                    <a href="/user/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;客户反馈</a>
+                    {/if}
+                    {if $user->is_admin || $user->is_finance}
                         <a href="/admin"><i class="icon icon-lg">person_pin</i>&nbsp;管理面板</a>
                     {/if}
                     {if $can_backtoadmin}

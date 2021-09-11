@@ -20,7 +20,15 @@ class Admin
             return $response->withStatus(302)->withHeader('Location', '/auth/login');
         }
         if (!$user->is_admin) {
-            return $response->withStatus(302)->withHeader('Location', '/user');
+            if($user->is_finance == 0){
+                return $response->withStatus(302)->withHeader('Location', '/user');
+            }
+            if (!in_array($request->getUri()->getPath(),[
+                '/admin/finance/base',
+                '/admin/agent/index'
+            ])) {
+                return $response->withStatus(302)->withHeader('Location', '/admin/finance/base');
+            }
         }
         return $next($request, $response);
     }

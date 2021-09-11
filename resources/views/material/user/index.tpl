@@ -21,6 +21,35 @@ table tr td:first-child {
     <div class="container">
         <section class="content-inner margin-top-no">
             <div class="ui-card-wrap">
+                <div class="col-xx-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner margin-bottom-no">
+                                <p class="card-heading">
+                                    <i class="icon icon-md">notifications_active</i> 公告栏
+                                    &nbsp;&nbsp; <a href="/user/announcement" style="font-size: small;text-decoration: underline;">点击查看更多公告</a>
+                                </p>
+                                <p><strong>2021年09月03日 20:00</strong> 使用illuminate database查询构造器进行数据库操作</p>
+                                <p><strong>2021年09月03日 20:00</strong> 使用illuminate database查询构造器进行数据库操作</p>
+                                <p><strong>2021年09月03日 20:00</strong> 使用illuminate database查询构造器进行数据库操作</p>
+                                {if $config['enable_admin_contact'] === true}
+                                    <p class="card-heading">管理员联系方式</p>
+                                    {if $config['admin_contact1']!=''}
+                                        <p>{$config['admin_contact1']}</p>
+                                    {/if}
+                                    {if $config['admin_contact2']!=''}
+                                        <p>{$config['admin_contact2']}</p>
+                                    {/if}
+                                    {if $config['admin_contact3']!=''}
+                                        <p>{$config['admin_contact3']}</p>
+                                    {/if}
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-card-wrap">
 
                 <div class="col-xx-12 col-xs-6 col-lg-3">
                     <div class="card user-info">
@@ -146,13 +175,13 @@ table tr td:first-child {
                 </div>
             </div>
             <div class="ui-card-wrap">
-                <div class="col-xx-12 col-sm-5">
+                <div class="col-xx-12 col-sm-12">
                     <div class="card">
                         <div class="card-main">
-                        <div class="card-inner margin-bottom-no">
-                            <p class="card-heading" style="margin-bottom: 0;"><i class="icon icon-md">account_circle</i>流量使用情况</p>
+                            <div class="card-inner margin-bottom-no">
+                                <p class="card-heading" style="margin-bottom: 0;"><i class="icon icon-md">account_circle</i>流量使用情况</p>
                                 {if $user->valid_use_loop() != '未购买套餐.'}
-                                <p>下次流量重置时间：{$user->valid_use_loop()}</p>
+                                    <p>下次流量重置时间：{$user->valid_use_loop()}</p>
                                 {/if}
                                 <div class="progressbar">
                                     <div class="before"></div>
@@ -196,59 +225,37 @@ table tr td:first-child {
                                 </div>
                             </div>
                             {if $config['enable_checkin'] == true}
-                            <div class="card-inner margin-bottom-no">
-                                <p class="card-heading"><i class="icon icon-md">account_circle</i> 签到</p>
-                                <p>上次签到时间：{$user->lastCheckInTime()}</p>
-                                <p id="checkin-msg"></p>
-                                {if $geetest_html != null}
-                                    <div id="popup-captcha"></div>
-                                {/if}
-                                {if $config['enable_checkin_captcha'] == true && $user->isAbleToCheckin()}
-                                    <div class="g-recaptcha" data-sitekey="{$recaptcha_sitekey}"></div>
-                                {/if}
-                                <div class="card-action">
-                                    <div class="usercheck pull-left">
-                                        {if $user->isAbleToCheckin() }
-                                            <div id="checkin-btn">
-                                                <button id="checkin" class="btn btn-brand btn-flat"><span class="icon">check</span>&nbsp;点我签到&nbsp;
-                                                    <div><span class="icon">screen_rotation</span>&nbsp;或者摇动手机签到</div>
+                                <div class="card-inner margin-bottom-no">
+                                    <p class="card-heading"><i class="icon icon-md">account_circle</i> 签到</p>
+                                    <p>上次签到时间：{$user->lastCheckInTime()}</p>
+                                    <p id="checkin-msg"></p>
+                                    {if $geetest_html != null}
+                                        <div id="popup-captcha"></div>
+                                    {/if}
+                                    {if $config['enable_checkin_captcha'] == true && $user->isAbleToCheckin()}
+                                        <div class="g-recaptcha" data-sitekey="{$recaptcha_sitekey}"></div>
+                                    {/if}
+                                    <div class="card-action">
+                                        <div class="usercheck pull-left">
+                                            {if $user->isAbleToCheckin() }
+                                                <div id="checkin-btn">
+                                                    <button id="checkin" class="btn btn-brand btn-flat"><span class="icon">check</span>&nbsp;点我签到&nbsp;
+                                                        <div><span class="icon">screen_rotation</span>&nbsp;或者摇动手机签到</div>
                                                     </button>
-                                            </div>
-                                        {else}
-                                            <p><a class="btn btn-brand disabled btn-flat" href="#"><span class="icon">check</span>&nbsp;今日已签到</a></p>
-                                        {/if}
+                                                </div>
+                                            {else}
+                                                <p><a class="btn btn-brand disabled btn-flat" href="#"><span class="icon">check</span>&nbsp;今日已签到</a></p>
+                                            {/if}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             {/if}
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-main">
-                            <div class="card-inner margin-bottom-no">
-                                <p class="card-heading"><i class="icon icon-md">notifications_active</i> 公告栏</p>
-                                {if $ann != null}
-                                    <p>{$ann->content}</p>
-                                    <br/>
-                                    <strong>查看所有公告请<a href="/user/announcement">点击这里</a></strong>
-                                {/if}
-                                {if $config['enable_admin_contact'] === true}
-                                    <p class="card-heading">管理员联系方式</p>
-                                    {if $config['admin_contact1']!=''}
-                                        <p>{$config['admin_contact1']}</p>
-                                    {/if}
-                                    {if $config['admin_contact2']!=''}
-                                        <p>{$config['admin_contact2']}</p>
-                                    {/if}
-                                    {if $config['admin_contact3']!=''}
-                                        <p>{$config['admin_contact3']}</p>
-                                    {/if}
-                                {/if}
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="col-xx-12 col-sm-7">
+            </div>
+            <div class="ui-card-wrap">
+                <div class="col-xx-12 col-sm-12">
                     <div class="card quickadd">
                         <div class="card-main">
                             <div class="card-inner">

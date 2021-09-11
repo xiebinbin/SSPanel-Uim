@@ -24,19 +24,19 @@
                                                 <th>邀请时间</th>
                                                 <th>操作</th>
                                             </tr>
-                                            {foreach $juniors as $junior}
+                                            {foreach $fans as $item}
                                                 <tr>
-                                                    <td>{$junior->id}</td>
+                                                    <td>{$item->id}</td>
                                                     {if $user->is_agent == 1 && $user->agent_level == 1}
-                                                        <td>{if $junior->is_agent==1}代理{else}普通用户{/if}</td>
+                                                        <td>{if $item->is_agent==1}代理{else}普通用户{/if}</td>
                                                     {/if}
-                                                    <td>{$junior->reg_date}</td>
+                                                    <td>{$item->reg_date}</td>
                                                     <td>
                                                         {if $user->is_agent == 1 && $user->agent_level == 1}
-                                                            {if $junior->is_agent == 1}
-                                                                <button onclick="cancelAgent({$junior->id})">取消代理</button>
+                                                            {if $item->is_agent == 1}
+                                                                <button onclick="cancelAgent({$item->id})">取消代理</button>
                                                             {else}
-                                                                <button onclick="setAgent({$junior->id})">设为代理</button>
+                                                                <button onclick="setAgent({$item->id})">设为代理</button>
                                                             {/if}
                                                         {/if}
                                                     </td>
@@ -60,10 +60,10 @@
 
 
 <script>
-    function cancelAgent(userId){
+    function setAgent(userId){
         $.ajax({
             type: "POST",
-            url: "/agent/cancel_agent",
+            url: "/agent/set_agent",
             dataType: "json",
             data: {
                 user_id: userId

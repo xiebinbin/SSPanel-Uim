@@ -15,29 +15,18 @@
                             <div class="card-inner">
                                 <div class="card-table">
                                     <div class="table-responsive bgc-fix table-user">
-                                        {$render}
                                         <table class="table">
                                             <tr>
-                                                <th>用户ID</th>
-                                                <th>金额</th>
-                                                <th>备注</th>
-                                                <th>资金流向</th>
+                                                <th>ID</th>
+                                                <th>结算金额</th>
                                                 <th>操作时间</th>
 
                                             </tr>
                                             {foreach $bills as $bill}
                                                 <tr>
-                                                    <td>{$bill->user_id}</td>
+                                                    <td>{$bill->id}</td>
                                                     <td>{$bill->amount}</td>
-                                                    <td>{$bill->remark}</td>
-                                                    <td>
-                                                        {if $bill->flow == 'INPUT'}
-                                                            流入
-                                                        {else}
-                                                            流出
-                                                        {/if}
-                                                    </td>
-                                                    <td>{$bill->creted_at}</td>
+                                                    <td>{$bill->created_at}</td>
                                                 </tr>
                                             {/foreach}
                                         </table>

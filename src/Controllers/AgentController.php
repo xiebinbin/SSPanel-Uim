@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\{User};
+use App\Models\{AgentBill, User};
+use App\Utils\Tools;
 use Slim\Http\{Request, Response};
 
 /**
@@ -115,5 +116,26 @@ class AgentController extends BaseController
             'ret' => 1,
             'msg' => ''
         ]);
+    }
+    /**
+     * @param Request   $request
+     * @param Response  $response
+     * @param array     $args
+     */
+    public function fans($request, $response, $args)
+    {
+        $pageNum = $request->getQueryParam('page',1);
+        $query = User::query();
+        $fans = $query->where('ref_by', $this->user->id)
+            ->orderBy('id', 'desc')
+            ->paginate(15, ['*'], 'page', $pageNum);
+
+        $fans->setPath('/user/agent/fans');
+        $render = Tools::paginate_render($fans);
+        return $this->view()
+            ->assign('user', $this->user)
+            ->assign('fans', $fans)
+            ->assign('render', $render)
+            ->display('user/agent/user.tpl');
     }
 }

@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/gh/DataTables/DataTables@1.10.19/media/css/dataTables.material.min.css" rel="stylesheet">
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
+    <script src="/assets/js/toast.js"></script>
+    <link href="/assets/css/toast.css" rel="stylesheet">
     <!-- favicon -->
     <!-- ... -->
     <style>
@@ -49,7 +51,7 @@
             <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
                 {if $user->isLogin}
                 <span class="access-hide">{$user->user_name}</span>
-                <span class="avatar avatar-sm"><img src="{$user->gravatar}"></span>
+                <span class="avatar avatar-sm"><img src="#"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
@@ -131,11 +133,11 @@
                     </ul>
                     {/if}
                     {if $user->is_finance == 1 || $user->is_admin == 1}
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_trade">财务</a>
-                    <ul class="menu-collapse collapse in" id="ui_menu_trade">
-                        <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>基础信息</a></li>
-                        <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>代理列表</a></li>
-                        <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>打款</a></li>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_finance">财务</a>
+                    <ul class="menu-collapse collapse in" id="ui_menu_finance">
+                        <li><a href="/admin/finance/base"><i class="icon icon-lg">shop</i>基础信息</a></li>
+                        <li><a href="/admin/finance/settle/index"><i class="icon icon-lg">shop</i>结算记录</a></li>
+                        <li><a href="/admin/agent/index"><i class="icon icon-lg">shop</i>代理列表</a></li>
                     </ul>
                     {/if}
                 <li><a href="/user"><i class="icon icon-lg">person</i>&nbsp;用户中心</a></li>

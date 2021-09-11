@@ -551,9 +551,14 @@ class UserController extends BaseController
      * @param array     $args
      */
     public function junior($request, $response, $args)
-    {
-        $pageNum = $request->getQueryParams()['page'] ?? 1;
-        $juniors = User::where('ref_by', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+    {;
+        $pageNum = $request->getQueryParam('page',1);
+        $query = User::query()
+            ->where('is_agent',1)
+            ->where('agent_level',2);
+        $juniors = $query->where('ref_by', $this->user->id)
+            ->orderBy('id', 'desc')
+            ->paginate(15, ['*'], 'page', $pageNum);
 
         $juniors->setPath('/user/agent/junior');
         $render = Tools::paginate_render($juniors);
@@ -572,7 +577,11 @@ class UserController extends BaseController
     public function bill($request, $response, $args)
     {
         $pageNum = $request->getQueryParams()['page'] ?? 1;
-        $bills = AgentBill::where('agent_user_id', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+        $bills = AgentBill::where('agent_user_id', $this->user->id)
+            ->where('flow', 'OUTPUT')
+            ->where('status', 'NORMAL')
+            ->orderBy('id', 'desc')
+            ->paginate(15, ['*'], 'page', $pageNum);
 
         $bills->setPath('/user/agent/bill');
         $render = Tools::paginate_render($bills);

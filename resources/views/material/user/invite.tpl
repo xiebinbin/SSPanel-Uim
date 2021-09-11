@@ -34,7 +34,7 @@
                                 <div class="card-inner margin-bottom-no">
                                     <div class="card-inner margin-bottom-no">
                                         <div class="cardbtn-edit">
-                                            <div class="card-heading">邀请链接</div>
+                                            <div class="card-heading">代理推广链接</div>
                                             <div class="reset-flex"><span>重置链接</span><a
                                                         class="reset-link btn btn-brand-accent btn-flat"><i
                                                             class="icon">autorenew</i>&nbsp;</a></div>

@@ -212,7 +212,7 @@ class FinanceController extends AdminController
                 'msg' => '结算状态异常!'
             ]);
         }
-        if($this->user->is_finance != 1 || $this->user->is_admin != 1){
+        if($this->user->is_finance != 1 && $this->user->is_admin != 1){
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '没有权限!'

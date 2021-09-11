@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">代理列表</h1>
+            <h1 class="content-heading">结算记录</h1>
         </div>
     </div>
     <div class="container">

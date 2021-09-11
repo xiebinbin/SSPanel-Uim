@@ -25,7 +25,12 @@ class Admin
             }
             if (!in_array($request->getUri()->getPath(),[
                 '/admin/finance/base',
-                '/admin/agent/index'
+                '/admin/agent/index',
+                '/admin/finance/settle/index',
+                '/admin/finance/settle/info',
+                '/admin/finance/transfer',
+                '/admin/finance/settle/create',
+                '/admin/finance/settle/cancel'
             ])) {
                 return $response->withStatus(302)->withHeader('Location', '/admin/finance/base');
             }

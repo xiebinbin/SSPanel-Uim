@@ -86,4 +86,30 @@
             }
         });
     }
+    function setAgent(userId){
+        $.ajax({
+            type: "POST",
+            url: "/agent/set_agent",
+            dataType: "json",
+            data: {
+                user_id: userId
+            },
+            success: (data) => {
+                if (data.ret) {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                    window.setTimeout("location.reload();", {$config['jump_delay']});
+                } else {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                }
+            },
+            error: (jqXHR) => {
+                $("#result").modal();
+                $$.getElementById('msg').innerHTML = `${
+                        data.msg
+                } 出现了一些错误`;
+            }
+        });
+    }
 </script>

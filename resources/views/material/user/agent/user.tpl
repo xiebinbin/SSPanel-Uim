@@ -60,6 +60,32 @@
 
 
 <script>
+    function cancelAgent(userId){
+        $.ajax({
+            type: "POST",
+            url: "/agent/cancel_agent",
+            dataType: "json",
+            data: {
+                user_id: userId
+            },
+            success: (data) => {
+                if (data.ret) {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                    window.setTimeout("location.href='/user/invite'", {$config['jump_delay']});
+                } else {
+                    $("#result").modal();
+                    $$.getElementById('msg').innerHTML = data.msg;
+                }
+            },
+            error: (jqXHR) => {
+                $("#result").modal();
+                $$.getElementById('msg').innerHTML = `${
+                        data.msg
+                } 出现了一些错误`;
+            }
+        });
+    }
     function setAgent(userId){
         $.ajax({
             type: "POST",

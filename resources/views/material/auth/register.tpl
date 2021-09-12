@@ -35,7 +35,7 @@
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group-label auth-row">
-                                <label class="floating-label" for="passwd">密码</label>
+                                <label class="floating-label" for="passwd">密码 (必须大于等于8位)</label>
                                 <input class="form-control maxwidth-auth" id="passwd" type="password" autocomplete="new-password">
                                 <p id="passwd-strong" style="text-align: left; margin: 3px; font-size: 80%"></p>
                             </div>
@@ -44,7 +44,7 @@
                     <div class="rowtocol">
                         <div class="auth-row">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="repasswd">重复密码</label>
+                                <label class="floating-label" for="repasswd">重复密码 (必须大于等于8位)</label>
                                 <input class="form-control maxwidth-auth" id="repasswd" type="password" autocomplete="new-password">
                             </div>
                         </div>

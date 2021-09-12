@@ -130,7 +130,7 @@
                             <a href="/user/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;购买记录</a>
                         </li>
                         {if $config['enable_donate']===true}
-                            <li>
+                            <li style="display: none;">
                                 <a href="/user/donate"><i class="icon icon-lg">attach_money</i>&nbsp;捐赠公示</a>
                             </li>
                         {/if}

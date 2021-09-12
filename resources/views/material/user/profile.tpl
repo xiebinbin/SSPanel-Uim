@@ -56,6 +56,11 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            {if count($boughts) == 0}
+                                                <tr>
+                                                    <td style="text-align: center;" colspan="5">无</td>
+                                                </tr>
+                                            {/if}
                                           	{foreach $boughts as $bought}
                                           		{if $bought->valid()}
                                                 <tr>
@@ -90,6 +95,11 @@
                                                 <th>IP</th>
                                                 <th>归属地</th>
                                             </tr>
+                                            {if count($userip) == 0}
+                                                <tr>
+                                                    <td style="text-align: center;" colspan="2">无</td>
+                                                </tr>
+                                            {/if}
                                             {foreach $userip as $single=>$location}
                                                 <tr>
                                                     <td>{$single}</td>

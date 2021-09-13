@@ -138,7 +138,7 @@
                     {if $config['enable_ticket']===true}
                     <a href="/user/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;客户反馈</a>
                     {/if}
-                    {if $user->is_admin || $user->is_finance}
+                    {if $user->is_admin || $user->is_finance || $user->is_operation}
                         <a href="/admin"><i class="icon icon-lg">person_pin</i>&nbsp;管理面板</a>
                     {/if}
                     {if $can_backtoadmin}

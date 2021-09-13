@@ -20,10 +20,10 @@ class Admin
             return $response->withStatus(302)->withHeader('Location', '/auth/login');
         }
         if (!$user->is_admin) {
-            if($user->is_finance == 0){
+            if($user->is_finance == 0 && $user->is_operation==0){
                 return $response->withStatus(302)->withHeader('Location', '/user');
             }
-            if (!in_array($request->getUri()->getPath(),[
+            if ($user->is_finance == 1 && !in_array($request->getUri()->getPath(),[
                 '/admin/finance/base',
                 '/admin/agent/index',
                 '/admin/finance/settle/index',
@@ -32,6 +32,19 @@ class Admin
                 '/admin/finance/settle/create',
                 '/admin/finance/settle/cancel'
             ])) {
+                return $response->withStatus(302)->withHeader('Location', '/admin/finance/base');
+            }
+            if ($user->is_operation == 1 && !in_array($request->getUri()->getPath(),[
+                    '/admin/finance/base',
+                    '/admin/agent/index',
+                    '/admin/finance/settle/index',
+                    '/admin/finance/settle/info',
+                    '/admin/finance/settle/create',
+                    '/admin/finance/settle/cancel',
+                    '/admin/operation/user/index',
+                    '/admin/operation/user/info',
+                    '/admin/operation/user/update',
+                ])) {
                 return $response->withStatus(302)->withHeader('Location', '/admin/finance/base');
             }
         }

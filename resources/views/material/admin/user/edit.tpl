@@ -52,14 +52,22 @@
                                 </div>
                             </div>
                             <div class="form-group form-group-label">
+                                <div class="checkbox switch">
+                                    <label for="is_operation">
+                                        <input {if $edit_user->is_operation==1}checked{/if} class="access-hide" id="is_operation" type="checkbox"/>
+                                        <span class="switch-toggle"></span>是否为运营
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-label">
                                 <label for="agent_level">
                                     <label class="floating-label" for="sort">代理等级</label>
                                     <select id="agent_level" class="form-control maxwidth-edit" name="agent_level">
                                         <option value="0" {if $edit_user->agent_level==0}selected{/if}>无
                                         </option>
-                                        <option value="1" {if $edit_user->agent_level==1}selected{/if}>运营
+                                        <option value="1" {if $edit_user->agent_level==1}selected{/if}>1级
                                         </option>
-                                        <option value="2" {if $edit_user->agent_level==2}selected{/if}>代理
+                                        <option value="2" {if $edit_user->agent_level==2}selected{/if}>2级
                                         </option>
                                     </select>
                                 </label>
@@ -324,6 +332,10 @@
             if (document.getElementById('is_agent').checked) {
                 is_agent = 1;
             }
+            let is_operation = 0;
+            if (document.getElementById('is_operation').checked) {
+                is_operation = 1;
+            }
             let enable = 0;
             if (document.getElementById('enable').checked) {
                 enable = 1;
@@ -356,6 +368,7 @@
                     is_admin,
                     is_agent,
                     is_finance,
+                    is_operation,
                     agent_level: $$getValue('agent_level'),
                     ga_enable,
                     ban_time: $$getValue('ban_time'),

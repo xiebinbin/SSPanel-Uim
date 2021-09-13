@@ -253,6 +253,7 @@ class UserController extends AdminController
         $user->enable = $request->getParam('enable');
         $user->is_admin = $request->getParam('is_admin');
         $user->is_finance = $request->getParam('is_finance');
+        $user->is_operation = $request->getParam('is_operation');
         $user->is_agent = $isAgent;
         $user->agent_level = $request->getParam('agent_level');
         $user->ga_enable = $request->getParam('ga_enable');

@@ -28,6 +28,7 @@ use App\Models\{AgentBill,
     InviteCode,
     EmailVerify,
     UserSubscribeLog};
+use Carbon\Carbon;
 use App\Utils\{
     GA,
     URL,
@@ -78,7 +79,10 @@ class UserController extends BaseController
         } else {
             $token = '';
         }
-
+        $anns = Ann::query()->orderBy('id', 'desc')->limit(3)->get();
+        foreach ($anns as &$ann){
+            $ann->created_at = (new Carbon($ann->date))->format('Y年m月d日 H:i');
+        }
         return $response->write(
             $this->view()
                 ->assign('ssr_sub_token', $this->user->getSublink())
@@ -90,6 +94,7 @@ class UserController extends BaseController
                 ->assign('geetest_html', $captcha['geetest'])
                 ->assign('mergeSub', $_ENV['mergeSub'])
                 ->assign('subUrl', $_ENV['subUrl'])
+                ->assign('anns', $anns)
                 ->registerClass('URL', URL::class)
                 ->assign('recaptcha_sitekey', $captcha['recaptcha'])
                 ->assign('subInfo', LinkController::getSubinfo($this->user, 0))
@@ -453,7 +458,7 @@ class UserController extends BaseController
      */
     public function announcement($request, $response, $args)
     {
-        $Anns = Ann::orderBy('date', 'desc')->get();
+        $Anns = Ann::orderBy('id', 'desc')->get();
 
         if ($request->getParam('json') == 1) {
             return $response->withJson([

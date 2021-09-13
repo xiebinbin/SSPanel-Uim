@@ -13,6 +13,10 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
+                                <label class="floating-label" for="email">排序</label>
+                                <input class="form-control maxwidth-edit" id="sort" type="number" value="{$ann->sort}">
+                            </div>
+                            <div class="form-group form-group-label">
                                 <label class="floating-label" for="content">内容</label>
                                 <link rel="stylesheet"
                                       href="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/css/editormd.min.css"/>
@@ -70,6 +74,7 @@
                 url: "/admin/announcement/{$ann->id}",
                 dataType: "json",
                 data: {
+                    sort:$$getValue('sort'),
                     content: editor.getHTML(),
                     markdown: editor.getMarkdown()
                 },

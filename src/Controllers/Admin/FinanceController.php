@@ -23,9 +23,12 @@ class FinanceController extends AdminController
     {
 
         $data = [
-            'sum_sale_amount'=>0,
-            'yesterday_sale_amount'=>0,
-            'today_sale_amount'=>0,
+            'today_income'=>0, // 今日收入
+            'today_expend'=>0, // 今日支出
+            'current_month_income'=>0, // 当月收入
+            'current_month_expend'=>0, // 当月支出
+            'sum_income'=>0, // 总收入收入
+            'sum_expend'=>0, // 总支出
             'settled_amount'=>AgentWallet::query()->sum('settled_amount'),
             'balance'=>AgentWallet::query()->sum('balance'),
         ];

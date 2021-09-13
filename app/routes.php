@@ -298,6 +298,11 @@ return function (SlimApp $app) {
             // 撤销结算
             $this->post('/settle/cancel',         App\Controllers\Admin\FinanceController::class . ':cancelSettle');
         });
+        $this->group('/operation',function () {
+            $this->get('/user/index',         App\Controllers\Admin\OperationController::class . ':userIndex');
+            $this->get('/user/info',         App\Controllers\Admin\OperationController::class . ':userInfo');
+            $this->post('/user/update',         App\Controllers\Admin\OperationController::class . ':updateUserInfo');
+        });
     })->add(new Admin());
 
     // mu

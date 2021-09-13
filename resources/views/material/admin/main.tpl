@@ -118,27 +118,42 @@
                         <li><a href="/admin/detect/log"><i class="icon icon-lg">assignment_late</i>&nbsp;审计记录</a></li>
                         <li><a href="/admin/detect/ban"><i class="icon icon-lg">text_fields</i>&nbsp;审计封禁</a></li>
                     </ul>
+                    {/if}
+                    {if $user->is_admin==1 || $user->is_operation == 1}
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_trade">交易</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_trade">
-                        <li><a href="/admin/code">
-                                <i class="icon icon-lg">code</i>
-                                &nbsp;{if $config['enable_donate']===true}充值与捐赠记录{else}充值记录{/if}</a>
-                        </li>
-                        <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>&nbsp;商品</a></li>
-                        <li><a href="/admin/coupon"><i class="icon icon-lg">card_giftcard</i>&nbsp;优惠码</a></li>
-                        <li><a href="/admin/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;购买记录</a></li>
-                        {if $config['payment_system']=='chenAlipay'}
+                        {if $user->is_admin == 1 || $user->is_operation == 1}
+                            <li><a href="/admin/shop"><i class="icon icon-lg">shop</i>&nbsp;商品列表</a></li>
+                        {/if}
+                        {if $user->is_admin==1}
+                            <li><a href="/admin/code">
+                                    <i class="icon icon-lg">code</i>
+                                    &nbsp;{if $config['enable_donate']===true}充值与捐赠记录{else}充值记录{/if}</a>
+                            </li>
+                            <li style="display: none;"><a href="/admin/coupon"><i class="icon icon-lg">card_giftcard</i>&nbsp;优惠码</a></li>
+                            <li><a href="/admin/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;购买记录</a></li>
+                        {/if}
+                        {if  $user->is_admin==1 && $config['payment_system']=='chenAlipay'}
                             <li><a href="/admin/editConfig"><i class="icon icon-lg">shopping_cart</i>&nbsp;支付设置</a></li>
                         {/if}
                     </ul>
                     {/if}
-                    {if $user->is_finance == 1 || $user->is_admin == 1}
+                    {if $user->is_finance == 1 || $user->is_admin == 1 || $user->is_operation == 1}
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_finance">财务</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_finance">
                         <li><a href="/admin/finance/base"><i class="icon icon-lg">shop</i>基础信息</a></li>
-                        <li><a href="/admin/finance/settle/index"><i class="icon icon-lg">shop</i>结算记录</a></li>
-                        <li><a href="/admin/agent/index"><i class="icon icon-lg">shop</i>代理列表</a></li>
+                        <li><a href="/admin/finance/settle/index"><i class="icon icon-lg">shop</i>用户收入记录</a></li>
+                        <li><a href="/admin/finance/settle/index"><i class="icon icon-lg">shop</i>代理出款记录</a></li>
+                        {if  $user->is_finance == 1 || $user->is_admin == 1}
+                        <li><a href="/admin/agent/index"><i class="icon icon-lg">shop</i>代理支付</a></li>
+                        {/if}
                     </ul>
+                    {/if}
+                    {if $user->is_operation == 1 || $user->is_admin == 1}
+                        <a class="waves-attach" data-toggle="collapse" href="#ui_menu_finance">运营</a>
+                        <ul class="menu-collapse collapse in" id="ui_menu_finance">
+                            <li><a href="/admin/operation/user/index"><i class="icon icon-lg">shop</i>用户列表</a></li>
+                        </ul>
                     {/if}
                 <li><a href="/user"><i class="icon icon-lg">person</i>&nbsp;用户中心</a></li>
             </ul>

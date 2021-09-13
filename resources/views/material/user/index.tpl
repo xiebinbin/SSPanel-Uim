@@ -29,9 +29,9 @@ table tr td:first-child {
                                     <i class="icon icon-md">notifications_active</i> 公告栏
                                     &nbsp;&nbsp; <a href="/user/announcement" style="font-size: small;text-decoration: underline;">点击查看更多公告</a>
                                 </p>
-                                <p><strong>2021年09月03日 20:00</strong> 使用illuminate database查询构造器进行数据库操作</p>
-                                <p><strong>2021年09月03日 20:00</strong> 使用illuminate database查询构造器进行数据库操作</p>
-                                <p><strong>2021年09月03日 20:00</strong> 使用illuminate database查询构造器进行数据库操作</p>
+                                {foreach $anns as $ann}
+                                    <p>{$ann->created_at}&nbsp;{$ann->content}</p>
+                                {/foreach}
                                 {if $config['enable_admin_contact'] === true}
                                     <p class="card-heading">管理员联系方式</p>
                                     {if $config['admin_contact1']!=''}

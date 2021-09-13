@@ -27,11 +27,12 @@ class AnnController extends AdminController
         $table_config['total_column'] = array(
             'op'      => '操作',
             'id'      => 'ID',
+            'sort'      => '排序',
             'date'    => '日期',
             'content' => '内容'
         );
         $table_config['default_show_column'] = array(
-            'op', 'id', 'date', 'content'
+            'op', 'id','sort', 'date', 'content'
         );
         $table_config['ajax_url'] = 'announcement/ajax';
         return $response->write(
@@ -66,6 +67,7 @@ class AnnController extends AdminController
             $tempdata            = [];
             $tempdata['op']      = '<a class="btn btn-brand" href="/admin/announcement/' . $value->id . '/edit">编辑</a> <a class="btn btn-brand-accent" id="delete" value="' . $value->id . '" href="javascript:void(0);" onClick="delete_modal_show(\'' . $value->id . '\')">删除</a>';
             $tempdata['id']      = $value->id;
+            $tempdata['sort']      = $value->sort;
             $tempdata['date']    = $value->date;
             $tempdata['content'] = $value->content;
 
@@ -115,7 +117,7 @@ class AnnController extends AdminController
             $ann->date     = date('Y-m-d H:i:s');
             $ann->content  = $content;
             $ann->markdown = $request->getParam('markdown');
-
+            $ann->sort  = $request->getParam('sort');
             if (!$ann->save()) {
                 return $response->withJson([
                     'ret' => 0,
@@ -202,6 +204,7 @@ class AnnController extends AdminController
     public function update($request, $response, $args)
     {
         $ann           = Ann::find($args['id']);
+        $ann->sort  = $request->getParam('sort');
         $ann->content  = $request->getParam('content');
         $ann->markdown = $request->getParam('markdown');
         $ann->date     = date('Y-m-d H:i:s');

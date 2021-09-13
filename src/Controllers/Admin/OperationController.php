@@ -109,9 +109,7 @@ class OperationController extends AdminController
         try {
             // 构建订单
             $user->is_agent = $isAgent;
-            if ($refBy > 0){
-                $user->ref_by = $refBy;
-            }
+            $user->ref_by = $refBy;
             $user->agent_level = empty($refBy) ? 1 : 2;
             if ($isAgent == 1 && empty($wallet)){
                 // 生成钱包

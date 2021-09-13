@@ -34,5 +34,6 @@ storage/*.*
 
 .user.ini
 public/.user.ini
+public/clients
 
 resources/views/material/analytics.tpl

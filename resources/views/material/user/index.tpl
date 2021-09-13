@@ -402,14 +402,14 @@ table tr td:first-child {
                                             <div class="tab-pane fade active in" id="sub_center_general">
                                                 <p>此处为通用订阅，适用于多种应用的订阅，请注意站点所支持的协议，本处显示的订阅类型不代表站点支持的协议类型.</p>
                                                 <hr/>
-                                                <p><span class="icon icon-lg text-white">filter_1</span> [ Shadowsocks ]：
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_1</span> [ Shadowsocks ]：
                                                     <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ss']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>.<a id="general_ss" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ss","#general_ss","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                 </p>
-                                                <hr/>
-                                                <p><span class="icon icon-lg text-white">filter_2</span> [ ShadowsocksR(R) ]：
+                                                <hr style="display: none;"/>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_2</span> [ ShadowsocksR(R) ]：
                                                     <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>.<a id="general_ssr" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ssr","#general_ssr","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                 </p>
-                                                <hr/>
+                                                <hr style="display: none;"/>
                                                 <p><span class="icon icon-lg text-white">filter_3</span> [ V2Ray ]：
                                                     <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['v2ray']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>.<a id="general_v2ray" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=v2ray","#general_v2ray","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                 </p>
@@ -423,30 +423,30 @@ table tr td:first-child {
                                                 </p>
                                             </div>
                                             <div class="tab-pane fade" id="sub_center_windows">
-                                                <p><span class="icon icon-lg text-white">filter_1</span> Shadowsocks Windows - [ SS ]：</p>
-                                                    <p>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_1</span> Shadowsocks Windows - [ SS ]：</p>
+                                                    <p style="display: none;">
                                                         应用下载：
                                                         {if $config["subscribe_client"]===true}<a class="btn-dl" href="{if $config["subscribe_client_url"]==''}/user/getPcClient{else}{$config["subscribe_client_url"]}/getClient/{$getClient}{/if}?type=ss-win"><i class="material-icons icon-sm">cloud_download</i> 本站下载</a>
                                                         .{/if}
                                                         <a class="btn-dl" href="https://github.com/shadowsocks/shadowsocks-windows/releases"><i class="material-icons icon-sm">cloud_download</i> 官方下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         使用方式：
                                                         <a id="win_ss" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ss","#win_ss","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                     </p>
-                                                <hr/>
-                                                <p><span class="icon icon-lg text-white">filter_2</span> ShadowsocksR Windows - [ SS/SSR ]：</p>
-                                                    <p>
+                                                <hr style="display: none;"/>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_2</span> ShadowsocksR Windows - [ SS/SSR ]：</p>
+                                                    <p style="display: none;">
                                                         应用下载：
                                                         <a class="btn-dl" href="{if $config["subscribe_client"]===true}{if $config["subscribe_client_url"]==''}/user/getPcClient{else}{$config["subscribe_client_url"]}/getClient/{$getClient}{/if}?type=ssr-win{else}/clients/ssr-win.7z{/if}"><i class="material-icons icon-sm">cloud_download</i> 本站下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                         .
                                                         <a id="win_ssr" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ssr","#win_ssr","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                     </p>
-                                                <hr/>
+                                                <hr style="display: none;"/>
                                                 <p><span class="icon icon-lg text-white">filter_4</span> V2RayN - [ SS/VMess ]：</p>
                                                     <p>
                                                         应用下载：
@@ -535,22 +535,22 @@ table tr td:first-child {
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['v2ray']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                     </p>
                                                 <hr/>
-                                                <p><span class="icon icon-lg text-white">filter_4</span> ShadowsocksX-NG - [ SS ]：</p>
-                                                    <p>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_4</span> ShadowsocksX-NG - [ SS ]：</p>
+                                                    <p style="display: none;">
                                                         应用下载：
                                                         <a class="btn-dl" href="/clients/ss-mac.zip"><i class="material-icons icon-sm">cloud_download</i> 本站下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         使用方式：
                                                         <a id="mac_ss" class="copy-config btn-dl" onclick=Copyconfig("/user/getUserAllURL?type=ss","#mac_ss","")><i class="material-icons icon-sm">send</i> 拷贝全部节点 URL</a>
                                                     </p>
-                                                <hr/>
-                                                <p><span class="icon icon-lg text-white">filter_5</span> ShadowsocksX-NG-R - [ SS/SSR ]：</p>
-                                                    <p>
+                                                <hr style="display: none;"/>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_5</span> ShadowsocksX-NG-R - [ SS/SSR ]：</p>
+                                                    <p style="display: none;">
                                                         应用下载：
                                                         <a class="btn-dl" href="/clients/ssr-mac.dmg"><i class="material-icons icon-sm">cloud_download</i> 本站下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                     </p>
@@ -688,33 +688,33 @@ table tr td:first-child {
                                             {/if}
                                             </div>
                                             <div class="tab-pane fade" id="sub_center_android">
-                                                <p><span class="icon icon-lg text-white">filter_1</span> SS - [ SS ]：</p>
-                                                    <p>该客户端仅 v5.0 以上版本支持订阅，如您未找到订阅配置之处，请尝试升级客户端.</p>
-                                                    <p>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_1</span> SS - [ SS ]：</p>
+                                                    <p style="display: none;">该客户端仅 v5.0 以上版本支持订阅，如您未找到订阅配置之处，请尝试升级客户端.</p>
+                                                    <p style="display: none;">
                                                         应用下载：
                                                         <a class="btn-dl" href="/clients/ss-android.apk"><i class="material-icons icon-sm">cloud_download</i> 本站下载</a>
                                                         .
                                                         <a class="btn-dl" href="https://github.com/shadowsocks/shadowsocks-android/releases"><i class="material-icons icon-sm">cloud_download</i> 官方下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         插件下载：
                                                         <a class="btn-dl" href="/clients/ss-android-obfs.apk"><i class="material-icons icon-sm">cloud_download</i> 「必须」obfs 插件本站下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssa']}"><i class="material-icons icon-sm">send</i> 拷贝该应用专属订阅链接</a>
                                                     </p>
-                                                <hr/>
-                                                <p><span class="icon icon-lg text-white">filter_2</span> ShadowsocksR Android - [ SSR ]：</p>
-                                                    <p>
+                                                <hr style="display: none;"/>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_2</span> ShadowsocksR Android - [ SSR ]：</p>
+                                                    <p style="display: none;">
                                                         应用下载：
                                                         <a class="btn-dl" href="/clients/ssr-android.apk"><i class="material-icons icon-sm">cloud_download</i> SSR 本站下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                     </p>
-                                                <hr/>
+                                                <hr style="display: none;"/>
                                                 <p><span class="icon icon-lg text-white">filter_3</span> V2RayNG - [ SS/VMess ]：</p>
                                                     <p>
                                                         应用下载：
@@ -784,18 +784,18 @@ table tr td:first-child {
                                             {/if}
                                             </div>
                                             <div class="tab-pane fade" id="sub_center_linux">
-                                                <p><span class="icon icon-lg text-white">filter_1</span> Electron SSR - [ SS/SSR ]：</p>
-                                                    <p>
+                                                <p style="display: none;"><span class="icon icon-lg text-white">filter_1</span> Electron SSR - [ SS/SSR ]：</p>
+                                                    <p style="display: none;">
                                                         应用下载：
                                                         <a class="btn-dl" href="/clients/Electron-SSR.AppImage"><i class="material-icons icon-sm">cloud_download</i> 本站下载</a>
                                                         .
                                                         <a class="btn-dl" href="https://github.com/shadowsocksrr/electron-ssr/releases"><i class="material-icons icon-sm">cloud_download</i> 官方下载</a>
                                                     </p>
-                                                    <p>
+                                                    <p style="display: none;">
                                                         使用方式：
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝订阅链接</a>
                                                     </p>
-                                                <hr/>
+                                                <hr style="display: none;"/>
                                                 <p><span class="icon icon-lg text-white">filter_2</span> Qv2ray - [ SS/VMess ]：</p>
                                                     <p>
                                                         应用下载：
@@ -819,13 +819,13 @@ table tr td:first-child {
                                                 <p><span class="icon icon-lg text-white">filter_1</span> Koolshare 固件路由器/软路由：</p>
                                                     <p>
                                                         应用下载：
-                                                        <a class="btn-dl" href="https://github.com/hq450/fancyss_history_package"><i class="material-icons icon-sm">cloud_download</i> FancySS 下载页面</a>
+                                                        <a style="display: none;" class="btn-dl" href="https://github.com/hq450/fancyss_history_package"><i class="material-icons icon-sm">cloud_download</i> FancySS 下载页面</a>
                                                         .
                                                         <a class="btn-dl" href="https://github.com/hq450/fancyss_history_package/tree/master/fancyss_X64"><i class="material-icons icon-sm">cloud_download</i> FancySS 历史下载页面下载 V2Ray 插件</a>
                                                     </p>
                                                     <p>
                                                         使用方式：
-                                                        <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝 SSR 订阅链接</a>
+                                                        <a style="display: none;" class="copy-text btn-dl" data-clipboard-text="{$subInfo['ssr']}"><i class="material-icons icon-sm">send</i> 拷贝 SSR 订阅链接</a>
                                                         .
                                                         <a class="copy-text btn-dl" data-clipboard-text="{$subInfo['v2ray']}"><i class="material-icons icon-sm">send</i> 拷贝 V2Ray 订阅链接</a>
                                                     </p>

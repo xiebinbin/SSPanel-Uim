@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">下级用户</h1>
+            <h1 class="content-heading">下级代理</h1>
         </div>
     </div>
     <div class="container">
@@ -20,6 +20,7 @@
                                                 <th>用户ID</th>
                                                 {if $user->is_agent == 1 && $user->agent_level == 1}
                                                 <th>角色</th>
+                                                <th>昵称</th>
                                                 {/if}
                                                 <th>邀请时间</th>
                                                 <th>操作</th>
@@ -30,6 +31,7 @@
                                                     {if $user->is_agent == 1 && $user->agent_level == 1}
                                                         <td>{if $junior->is_agent==1}代理{else}普通用户{/if}</td>
                                                     {/if}
+                                                    <td>{$junior->user_name}</td>
                                                     <td>{$junior->reg_date}</td>
                                                     <td>
                                                         {if $user->is_agent == 1 && $user->agent_level == 1}

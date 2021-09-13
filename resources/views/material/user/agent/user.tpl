@@ -30,6 +30,7 @@
                                                     {if $user->is_agent == 1 && $user->agent_level == 1}
                                                         <td>{if $item->is_agent==1}代理{else}普通用户{/if}</td>
                                                     {/if}
+                                                    <td>{$item->user_name}</td>
                                                     <td>{$item->reg_date}</td>
                                                     <td>
                                                         {if $user->is_agent == 1 && $user->agent_level == 1}

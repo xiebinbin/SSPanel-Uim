@@ -87,6 +87,9 @@
         }
         let user_id = {$userInfo->id};
         let is_agent = 0;
+        if (document.getElementById('is_agent').checked) {
+            is_agent = 1;
+        }
         let ref_by = $$getValue('ref_by');
         if(confirm("确认设置?")){
             transferLoad = true;

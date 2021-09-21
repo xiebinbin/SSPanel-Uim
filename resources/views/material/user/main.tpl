@@ -75,6 +75,9 @@
                         <li>
                             <a href="/user/edit"><i class="icon icon-lg">sync_problem</i>&nbsp;资料编辑</a>
                         </li>
+                        <li>
+                            <a target="_blank" href="http://guide.jsvpn.app"><i class="icon icon-lg">sync_problem</i>&nbsp使用教程</a>
+                        </li>
                         {if $config['subscribeLog']===true && $config['subscribeLog_show']===true}
                         <li>
                             <a href="/user/subscribe_log"><i class="icon icon-lg">important_devices</i>&nbsp;订阅记录</a>

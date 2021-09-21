@@ -53,6 +53,19 @@
                                 </div>
                             </div>
                             <div class="form-group form-group-label">
+                                <label for="agent_level">
+                                    <label class="floating-label" for="sort">代理等级</label>
+                                    <select id="agent_level" class="form-control maxwidth-edit" name="agent_level">
+                                        <option value="0" {if $userInfo->agent_level==0}selected{/if}>无
+                                        </option>
+                                        <option value="1" {if $userInfo->agent_level==1}selected{/if}>1级
+                                        </option>
+                                        <option value="2" {if $userInfo->agent_level==2}selected{/if}>2级
+                                        </option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="form-group form-group-label">
                                 <label class="floating-label" for="email">上级代理ID</label>
                                 <input class="form-control maxwidth-edit" id="ref_by" type="number" value="{$userInfo->ref_by}">
                             </div>
@@ -74,9 +87,6 @@
         }
         let user_id = {$userInfo->id};
         let is_agent = 0;
-        if (document.getElementById('is_agent').checked) {
-            is_agent = 1;
-        }
         let ref_by = $$getValue('ref_by');
         if(confirm("确认设置?")){
             transferLoad = true;
@@ -87,7 +97,8 @@
                 data: {
                     user_id,
                     is_agent,
-                    ref_by
+                    ref_by,
+                    agent_level: $$getValue('agent_level')
                 },
                 success: data => {
                     transferLoad = false;

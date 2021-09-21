@@ -88,6 +88,7 @@ class OperationController extends AdminController
         $userId = $request->getParam('user_id', 0);
         $isAgent = intval($request->getParam('is_agent', 0));
         $refBy = intval($request->getParam('ref_by', 0));
+        $agentLevel = intval($request->getParam('agent_level', 0));
         if(empty($userId)){
             return $response->withJson([
                 'ret' => 0,
@@ -110,7 +111,7 @@ class OperationController extends AdminController
             // 构建订单
             $user->is_agent = $isAgent;
             $user->ref_by = $refBy;
-            $user->agent_level = empty($refBy) ? 1 : 2;
+            $user->agent_level = $agentLevel;
             if ($isAgent == 1 && empty($wallet)){
                 // 生成钱包
                 $agentWallet = new AgentWallet();
